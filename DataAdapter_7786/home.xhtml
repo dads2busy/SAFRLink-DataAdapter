@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:f="http://java.sun.com/jsf/core"     >
+    
+    <h:head><title>IGNORED</title></h:head>
+   
+   <!-- BODY --><h:body>           
+    <ui:composition template="/Template.xhtml" >
+    <ui:define name="content" > 
+    <p:panel header="VLDS Data Adapter Status" >
+                                                
+       <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+       <!-- +++++++++++++++++++++++ Status Panel ++++++++++++++++++++++ -->
+       <h:panelGrid columns="3" styleClass="t1" cellpadding="10px" rowClasses="rc1,null"  >  
+  
+          <h:outputText styleClass="td1"  value="Data Adapter Version ID: " />   
+          <p:spacer width="95" height="10"/>
+          <h:outputText value="#{user.dataAdapterVersion}" />
+           
+          <h:outputText styleClass="td1"  value="Last Application Startup:" />   
+          <p:spacer width="95" height="10"/>
+          <h:outputText value="#{user.statusData.lastAppStart}" />
+ 
+          <h:outputText styleClass="td1"  value="Uptime:" />  
+          <p:spacer width="30" />
+          <h:commandLink id="daUptime" value="#{user.statusData.uptime}" title="click to update value." actionListener="#{user.statusData.Dummy}" /> 
+
+          <h:outputText styleClass="td1"  value="Exposure-DB Connection:" />
+          <h:outputText styleClass="#{user.statusData.exposerConnStatus eq 'DOWN' ? 'e1' : (user.statusData.exposerConnStatus eq 'UP' ? 'g1' : '')}" id="exposerConn" value="#{user.statusData.exposerConnStatus}" />   
+          <p:commandButton widgetVar="exposer" id="exposer_button" value="Test Connection"  onclick="exposer.disable(),widgetFidget.show()"  update="daUptime,exposer_button,exposerConn" actionListener="#{user.statusData.TestExposerConnection}" oncomplete="widgetFidget.hide()" />
+             
+       </h:panelGrid>
+       <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+                
+    </p:panel>         
+    </ui:define> 
+    </ui:composition>    
+    </h:body>
+    
+    
+</html>
+
+

@@ -1,0 +1,124 @@
+<html>
+<head><title>Test Page For DatatAdapter</title><head>
+<body>
+<h1>TEST SETUP INSTRUCTIONS:</h1>  
+<br>
+
+<h2>OLDER VERSION</h2>
+Open SSMS as an admin runner, select menu item <b>File | Open | File</b> and browse to this folder and select MASTER.SQL.
+<br>
+Select menu item <b>Query | SQLCMD Mode</b> the execute the MASTER.SQL file
+<br>
+Run the DataAdapter, see docs for running and connecting to your MSSQL Database through the HTML interface
+<br><br>
+START THE GUI:<A href="https://localhost:8090/VLDS/"> START </A>
+<br><br>
+SEND THE GENERATE UEID.svc command: 
+<A href="https://localhost:8443/GenerateUEID.svc"> GENERATE UEID </A>
+<br><br>
+COUNT QUERY: <br>
+<A href="https://localhost:8443/CountDL.svc?schema=dbo&master=Demographic_Log&report_id=100&report_package_id=1000&filter=TEST_DETAIL_1.MATH_SCORE gt '90'"> Count math scores greater than 90 </A> <br>
+<A href="https://localhost:8443/CountDL.svc?schema=dbo&master=Demographic_Log&report_id=100&report_package_id=1000&filter=TEST_DETAIL_1.MATH_SCORE lt '90'"> Count math scores less than 90 </A>    <br>
+<A href="https://localhost:8443/CountDL.svc?schema=dbo&master=Demographic_Log&report_id=100&report_package_id=1000&filter=TEST_DETAIL_1.MATH_SCORE eq '90'"> Count math scores equal to 90 </A>    <br>
+<A href="https://localhost:8443/CountDL.svc?schema=dbo&master=Demographic_Log&report_id=100&report_package_id=1000&filter=TEST_DETAIL_1.MATH_SCORE lt '101'"> Count math scores less than 101 (should equal sum of first three) </A>  <br>
+<A href="https://localhost:8443/CountDL.svc?schema=dbo&master=Demographic_Log&report_id=100&report_package_id=1000&filter=TEST_DETAIL_1.MATH_SCORE gt '90' AND TEST_DETAIL_1.MATH_SCORE lt '90'"> Count math scores greater than 90 and less than 90 (should be 0) </A>  <br>
+<A href="https://localhost:8443/CountDL.svc?schema=dbo&master=Demographic_Log&report_id=100&report_package_id=1000&filter=TEST_DETAIL_1.MATH_SCORE gt '90' AND TEST_DETAIL_2.RUDA_1 gt '60'"> Count math scores greater than 90 and RUDA greater than 60 TWO TABLE QUERY </A> <br>
+<br><br>
+HASH QUERY: <br>
+<A href="https://localhost:8443/Hash.svc?max_results=1036&page_size=20&schema=dbo&hash_salt=49AAF3&anum_salt=U0B7HD0WJGW5THVKSG225VW566U0ZHI0P2LK&master=Demographic_Log&algorithms=FIRST_NAME~PENPADCHAFF1~MIDDLE_NAMES~PENPADCHAFF1~LAST_NAME~PENPADCHAFF1~GENDER~HMACSHA1~DOB_MONTH~HMACSHA1~DOB_DAY~HMACSHA1~DOB_YEAR~HMACSHA1~FIPS_5~HMACSHA1~RECORD_DATE~PASSTHRU&report_id=100&report_package_id=1000&filter=TEST_DETAIL_1.MATH_SCORE eq '90'"> HASH math score = 90 </A>
+<br><br>
+PERFORMANCE QUERY: <br>
+<A href="https://localhost:8443/Performance.svc?schema=dbo&report_id=100&report_package_id=1000&debug=true&master=Demographic_Log&ueids=1968418,1968403" > PERFORMANCE QUERY UEIDS ONLY, report id = 100, package id = 1000 </A>
+<br>
+<A href="https://localhost:8443/Performance.svc?schema=dbo&report_id=100&report_package_id=1000&debug=true&master=Demographic_Log&detail_table=TEST_DETAIL_1&detail_fields=MATH_SCORE,READING_SCORE&page_size=2000" > PERFORMANCE QUERY, report id = 100, package id = 1000 </A>
+
+
+
+
+<H2>NEW VERSION 1</H2>
+<H3>MSSQL</H3>
+<A href="https://localhost:8443/Hash.svc?max_results=1036&page_size=20&schema=dbo&hash_salt=49AAF3&anum_salt=U0B7HD0WJGW5THVKSG225VW566U0ZHI0P2LK&master=Demographic_Log&algorithms=FIRST_NAME~PENPADCHAFF1~MIDDLE_NAMES~PENPADCHAFF1~LAST_NAME~PENPADCHAFF1~GENDER~HMACSHA1~DOB_MONTH~HMACSHA1~DOB_DAY~HMACSHA1~DOB_YEAR~HMACSHA1~ZIP_5~HMACSHA1~FIPS_STATE~HMACSHA1~FIPS_COUNTY~HMACSHA1~MATCH_ID_1~HMACSHA1~MATCH_ID_2~HMACSHA1~MATCH_ID_3~HMACSHA1&report_id=100&report_package_id=1000&filter=TEST_DETAIL_1.MATH_SCORE eq '90'"> HASH math score = 90 </A>
+<br>
+<A href="https://localhost:8443/Hash.svc?max_results=1036&page_size=20&schema=dbo&master=Demographic_Log&algorithms=FIRST_NAME~PENPADCHAFF1~MIDDLE_NAMES~PENPADCHAFF1~LAST_NAME~PENPADCHAFF1~GENDER~HMACSHA1~DOB_MONTH~HMACSHA1~DOB_DAY~HMACSHA1~DOB_YEAR~HMACSHA1~ZIP_5~HMACSHA1~FIPS_STATE~HMACSHA1~FIPS_COUNTY~HMACSHA1~MATCH_ID_1~HMACSHA1~MATCH_ID_2~HMACSHA1~MATCH_ID_3~HMACSHA1&report_id=100&report_package_id=1000&filter=TEST_DETAIL_1.MATH_SCORE eq '90'"> HASH math score = 90, missing hash parameters </A>
+<br><br>
+<H3>ORACLE</H3>
+NORMAL: <A href="https://localhost:8443/Hash.svc?max_results=1036&page_size=20&schema=VLDS&hash_salt=49AAF3&anum_salt=U0B7HD0WJGW5THVKSG225VW566U0ZHI0P2LK&master=Demographic_Log&algorithms=FIRST_NAME~PENPADCHAFF1~MIDDLE_NAMES~PENPADCHAFF1~LAST_NAME~PENPADCHAFF1~GENDER~HMACSHA1~DOB_MONTH~HMACSHA1~DOB_DAY~HMACSHA1~DOB_YEAR~HMACSHA1~ZIP_5~HMACSHA1~FIPS_STATE~HMACSHA1~FIPS_COUNTY~HMACSHA1~MATCH_ID_1~HMACSHA1~MATCH_ID_2~HMACSHA1~MATCH_ID_3~HMACSHA1&report_id=100&report_package_id=1000&filter=TEST_DETAIL_1.MATH_SCORE eq '90'"> HASH math score = 90 </A>
+<br>
+LARGE: <A href="https://localhost:8443/Hash.svc?max_results=1036&page_size=20&schema=VLDS&hash_salt=49AAF3&anum_salt=U0B7HD0WJGW5THVKSG225VW566U0ZHI0P2LK&master=Demographic_Log_large&algorithms=FIRST_NAME~PENPADCHAFF1~MIDDLE_NAMES~PENPADCHAFF1~LAST_NAME~PENPADCHAFF1~GENDER~HMACSHA1~DOB_MONTH~HMACSHA1~DOB_DAY~HMACSHA1~DOB_YEAR~HMACSHA1~ZIP_5~HMACSHA1~FIPS_STATE~HMACSHA1~FIPS_COUNTY~HMACSHA1~MATCH_ID_1~HMACSHA1~MATCH_ID_2~HMACSHA1~MATCH_ID_3~HMACSHA1&report_id=100&report_package_id=1000&filter=TEST_DETAIL_1.MATH_SCORE eq '90'"> HASH math score = 90 </A>
+<br>
+
+PERFORMANCE QUERY: <br>
+<A href="https://localhost:8443/Performance.svc?schema=dbo&report_id=100&report_package_id=1000&debug=true&master=Demographic_Log&ueids=1968418,1968403" > PERFORMANCE QUERY UEIDS ONLY, report id = 100, package id = 1000 </A>
+<br>
+<A href="https://localhost:8443/Performance.svc?schema=dbo&report_id=100&report_package_id=1000&debug=true&master=Demographic_Log&detail_table=TEST_DETAIL_1&detail_fields=MATH_SCORE,READING_SCORE&filter=TEST_DETAIL_1.MATH_SCORE eq '90'&page_size=2000" > PERFORMANCE QUERY, report id = 100, package id = 1000 </A>
+<br><br>
+
+PERFORMANCE QUERY ORACLE: <br>
+LARGE: <A href="https://localhost:8443/Performance.svc?schema=VLDS&report_id=100&report_package_id=1000&debug=true&master=Demographic_Log_LARGE&ueids=1968418,1968403" > PERFORMANCE QUERY UEIDS ONLY, report id = 100, package id = 1000 </A>
+<br>
+
+
+<H2>NEW VERSION 2</H2>
+<H3>MSSQL</H3>
+<A href="https://localhost:8443/Status.svc?"> CHECK STATUS </A>
+<br>
+<b> REDUCE: </b><br/>
+<A href="https://localhost:8443/Reduce.svc?schema=dbo&master=Demographic_Log&hash_salt=49AAF3&anum_salt=U0B7HD0WJGW5THVKSG225VW566U0ZHI0P2LK&algorithms=FIRST_NAME~PENPADCHAFF1~MIDDLE_NAMES~PENPADCHAFF1~LAST_NAME~PENPADCHAFF1~GENDER~HMACSHA1~DOB_MONTH~HMACSHA1~DOB_DAY~HMACSHA1~DOB_YEAR~HMACSHA1~ZIP_5~HMACSHA1~FIPS_STATE~HMACSHA1~FIPS_COUNTY~HMACSHA1~MATCH_ID_1~HMACSHA1~MATCH_ID_2~HMACSHA1~MATCH_ID_3~HMACSHA1~DOB_MONTH_YEAR~HMACSHA1~FIPS_5~HMACSHA1"> CORRECT URL </A>
+<br/>ERRORS:
+<A href="https://localhost:8443/Reduce.svc?hash_salt=49AAF3&anum_salt=U0B7HD0WJGW5THVKSG225VW566U0ZHI0P2LK&algorithms=FIRST_NAME~PENPADCHAFF1~MIDDLE_NAMES~PENPADCHAFF1~LAST_NAME~PENPADCHAFF1~GENDER~HMACSHA1~DOB_MONTH~HMACSHA1~DOB_DAY~HMACSHA1~DOB_YEAR~HMACSHA1~ZIP_5~HMACSHA1~FIPS_STATE~HMACSHA1~FIPS_COUNTY~HMACSHA1~MATCH_ID_1~HMACSHA1~MATCH_ID_2~HMACSHA1~MATCH_ID_3~HMACSHA1~DOB_MONTH_YEAR~HMACSHA1~FIPS_5~HMACSHA1"> [Missing parameters] </A> ..
+<A href="https://localhost:8443/Reduce.svc?schema=dbo&master=Demographic_Log&hash_salt=49AAF3&anum_salt=U0B7HD0WJGW5THVKSG225VW566U0ZHI0P2LK&algorithms=FIRST_NAME~PENPADCHAFF1~MIDDLE_NAMES~PENPADCHAFF1~LAST_NAME~PENPADCHAFF1~GENDER~HMACSHA1~DOB_MONTH~HMACSHA1~DOB_DAY~HMACSHA1~DOB_YEAR~HMACSHA1~ZIP_5~HMACSHA1~FIPS_STATE~HMACSHA1~FIPS_COUNTY~HMACSHA1~MATCH_ID_1~HMACSHA1~MATCH_ID_2~HMACSHA1~MATCH_ID_3~HMACSHA1~DOB_MONTH_YEAR~HMACSHA1">[Missing HASH algorithm] </A> ..
+<A href="https://localhost:8443/Reduce.svc?schema=db0&master=Demographic_Log&hash_salt=49AAF3&anum_salt=U0B7HD0WJGW5THVKSG225VW566U0ZHI0P2LK&algorithms=FIRST_NAME~PENPADCHAFF1~MIDDLE_NAMES~PENPADCHAFF1~LAST_NAME~PENPADCHAFF1~GENDER~HMACSHA1~DOB_MONTH~HMACSHA1~DOB_DAY~HMACSHA1~DOB_YEAR~HMACSHA1~ZIP_5~HMACSHA1~FIPS_STATE~HMACSHA1~FIPS_COUNTY~HMACSHA1~MATCH_ID_1~HMACSHA1~MATCH_ID_2~HMACSHA1~MATCH_ID_3~HMACSHA1~DOB_MONTH_YEAR~HMACSHA1~FIPS_5~HMACSHA1"> [mis-spelled schema] </A>
+
+
+<br/><br>
+<H4> SWITCH </H4>
+<A href="https://localhost:8443/Switch.svc?"> SWITCH </A>
+<br>
+<A href="https://localhost:8443/Count.svc?schema=dbo&filter=TEST_DETAIL_1.MATH_SCORE gt '90'&detail_table=TEST_DETAIL_1"> COUNT filter:(TEST_DETAIL_1.MATH_SCORE gt '90')</A>
+<br>
+<A href="https://localhost:8443/Identifiers.svc?schema=dbo&filter=TEST_DETAIL_1.MATH_SCORE gt '90'&page_size=5&detail_table=TEST_DETAIL_1"> IDENTIFIERS (TEST_DETAIL_1.MATH_SCORE gt '90')  </A>
+<br>
+<A href="https://localhost:8443/Identifiers.svc?schema=dbo&filter=TEST_DETAIL_1.MATH_SCORE gt '90' AND TEST_DETAIL_2.RUDA_1 gt '60'&page_size=5&detail_table=TEST_DETAIL_1"> IDENTIFIERS (TEST_DETAIL_1.MATH_SCORE gt '90' AND TEST_DETAIL_2.RUDA_1 gt '60')  </A>
+<br>
+<A href="https://localhost:8443/Identifiers.svc?schema=dbo&filter=TEST_DETAIL_1.MATH_SCORE gt '90' AND TEST_DETAIL_2.RUDA_1 gt '60' OR TEST_DETAIL_2.RUDA_1 lt '10'&page_size=5&detail_table=TEST_DETAIL_1"> IDENTIFIERS (TEST_DETAIL_1.MATH_SCORE gt '90' AND TEST_DETAIL_2.RUDA_1 gt '60' OR TEST_DETAIL_2.RUDA_1 lt '10')  </A>
+<br>
+<A href="https://localhost:8443/Identifiers.svc?schema=dbo&filter=TEST_DETAIL_2.RUDA_1 gt '60' OR TEST_DETAIL_2.RUDA_1 lt '10'&page_size=5&detail_table=TEST_DETAIL_1"> IDENTIFIERS (TEST_DETAIL_1.MATH_SCORE gt '90' AND TEST_DETAIL_2.RUDA_1 gt '60' OR TEST_DETAIL_2.RUDA_1 lt '10')  </A>
+<br>
+You Must Edit The ueids in the following URL to match the ones returned by the Identifiers QUery for the following link to work:
+<A href="https://localhost:8443/Performance.svc?schema=dbo&filter=TEST_DETAIL_1.MATH_SCORE gt '90'&page_size=5&detail_table=TEST_DETAIL_1&detail_fields=MATH_SCORE,READING_SCORE&ueids=1337292,1329852,1335463"> PERFORMANCE (TEST_DETAIL_1.MATH_SCORE gt '90')  </A>
+<br>
+<A href="https://localhost:8443/Performance.svc?schema=dbo&filter=TEST_DETAIL_1.MATH_SCORE gt '90' AND TEST_DETAIL_2.RUDA_1 gt '60' AND TEST_DETAIL_2.RUDA_1 lt '10'&page_size=5&detail_table=TEST_DETAIL_1&detail_fields=MATH_SCORE,READING_SCORE&ueids=1337292,1335463,137292"> PERFORMANCE (filter=TEST_DETAIL_1.MATH_SCORE gt '90' AND TEST_DETAIL_2.RUDA_1 gt '60' AND TEST_DETAIL_2.RUDA_1 lt '10')  </A>
+<br>
+<A href="https://localhost:8443/Performance.svc?schema=dbo&filter=TEST_DETAIL_1.MATH_SCORE gt '90' AND TEST_DETAIL_2.RUDA_1 gt '60' OR TEST_DETAIL_2.RUDA_1 lt '10'&page_size=5&detail_table=TEST_DETAIL_1&detail_fields=MATH_SCORE,READING_SCORE&ueids=1337292,1335463,137292"> PERFORMANCE (filter=TEST_DETAIL_1.MATH_SCORE gt '90' AND TEST_DETAIL_2.RUDA_1 gt '60' OR TEST_DETAIL_2.RUDA_1 lt '10')  </A>
+<br>
+<A href="https://localhost:8443/Performance.svc?schema=dbo&filter=TEST_DETAIL_2.RUDA_1 gt '60' OR TEST_DETAIL_2.RUDA_2 gt '60'&page_size=5&detail_table=TEST_DETAIL_1&detail_fields=MATH_SCORE,READING_SCORE&ueids=1337292,1335463,137292"> PERFORMANCE (filter=TEST_DETAIL_2.RUDA_1 gt '60' OR TEST_DETAIL_2.RUDA_1 lt '10')  </A>
+
+
+
+<br><br><br><br><br><br><br><br><br>
+
+<H2>NEW VERSION 2</H2>
+<H3>ORACLE</H3>
+<A href="https://localhost:8443/Status.svc?"> CHECK STATUS </A>
+<br>
+<b> REDUCE: </b><br/>
+<A href="https://localhost:8443/Reduce.svc?schema=vlds&master=Demographic_Log&hash_salt=49AAF3&anum_salt=U0B7HD0WJGW5THVKSG225VW566U0ZHI0P2LK&algorithms=FIRST_NAME~PENPADCHAFF1~MIDDLE_NAMES~PENPADCHAFF1~LAST_NAME~PENPADCHAFF1~GENDER~HMACSHA1~DOB_MONTH~HMACSHA1~DOB_DAY~HMACSHA1~DOB_YEAR~HMACSHA1~ZIP_5~HMACSHA1~FIPS_STATE~HMACSHA1~FIPS_COUNTY~HMACSHA1~MATCH_ID_1~HMACSHA1~MATCH_ID_2~HMACSHA1~MATCH_ID_3~HMACSHA1~DOB_MONTH_YEAR~HMACSHA1~FIPS_5~HMACSHA1"> CORRECT URL </A>
+<br/>ERRORS:
+<br/>
+<H4> SWITCH </H4>
+<A href="https://localhost:8443/Switch.svc?"> SWITCH </A>
+<br>
+<A href="https://localhost:8443/Count.svc?schema=vlds&filter=TEST_DETAIL_1.MATH_SCORE gt '90'&detail_table=TEST_DETAIL_1"> COUNT filter:(TEST_DETAIL_1.MATH_SCORE gt '90')</A>
+<br>
+<A href="https://localhost:8443/Identifiers.svc?schema=vlds&filter=TEST_DETAIL_1.MATH_SCORE gt '90'&page_size=5&detail_table=TEST_DETAIL_1"> IDENTIFIERS (TEST_DETAIL_1.MATH_SCORE gt '90')  </A>
+<br>
+<A href="https://localhost:8443/Identifiers.svc?schema=vlds&filter=TEST_DETAIL_1.MATH_SCORE gt '90' AND TEST_DETAIL_2.RUDA_1 gt '60'&page_size=5&detail_table=TEST_DETAIL_1"> IDENTIFIERS (TEST_DETAIL_1.MATH_SCORE gt '90' AND TEST_DETAIL_2.RUDA_1 gt '60')  </A>
+<br>
+You Must Edit The ueids in the following URL to match the ones returned by the Identifiers QUery for the following link to work:
+<A href="https://localhost:8443/Performance.svc?schema=vlds&filter=TEST_DETAIL_1.MATH_SCORE gt '90'&page_size=5&detail_table=TEST_DETAIL_1&detail_fields=MATH_SCORE,READING_SCORE&ueids=1337292,1329852,1335463"> PERFORMANCE (TEST_DETAIL_1.MATH_SCORE gt '90')  </A>
+<br>
+<A href="https://localhost:8443/Performance.svc?schema=vlds&filter=TEST_DETAIL_1.MATH_SCORE gt '90' AND TEST_DETAIL_2.RUDA_1 gt '60' OR TEST_DETAIL_2.RUDA_1 lt '10'&page_size=5&detail_table=TEST_DETAIL_1&detail_fields=MATH_SCORE,READING_SCORE&ueids=1337292,1335463,137292"> PERFORMANCE (filter=TEST_DETAIL_1.MATH_SCORE gt '90' AND TEST_DETAIL_2.RUDA_1 gt '60' OR TEST_DETAIL_2.RUDA_1 lt '10')  </A>
+<br><br>
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://173.203.67.179:8888/LexiconMetadataUpdateWebService/MetadataUpdateService.svc" uri="wsdl/173.203.67.179_8888/LexiconMetadataUpdateWebService/MetadataUpdateService.svc.xml"/>
+    <system systemId="http://173.203.67.179:8888/LexiconMetadataUpdateWebService/MetadataUpdateService.svc?wsdl" uri="wsdl/173.203.67.179_8888/LexiconMetadataUpdateWebService/MetadataUpdateService.svc.wsdl"/>
+    <system systemId="http://173.203.67.179:8888/LexiconMetadataUpdateWebService/MetadataUpdateService.svc?xsd=xsd0" uri="wsdl/173.203.67.179_8888/LexiconMetadataUpdateWebService/MetadataUpdateService.svc.xsd_xsd0.xsd"/>
+    <system systemId="http://173.203.67.179:8888/LexiconMetadataUpdateWebService/MetadataUpdateService.svc?xsd=xsd1" uri="wsdl/173.203.67.179_8888/LexiconMetadataUpdateWebService/MetadataUpdateService.svc.xsd_xsd1.xsd"/>
+    <system systemId="http://173.203.67.179:8888/LexiconMetadataUpdateWebService/MetadataUpdateService.svc?xsd=xsd2" uri="wsdl/173.203.67.179_8888/LexiconMetadataUpdateWebService/MetadataUpdateService.svc.xsd_xsd2.xsd"/>
+    <system systemId="http://173.203.67.179:8888/LexiconMetadataUpdateWebService/MetadataUpdateService.svc?xsd=xsd3" uri="wsdl/173.203.67.179_8888/LexiconMetadataUpdateWebService/MetadataUpdateService.svc.xsd_xsd3.xsd"/>
+    <system systemId="http://173.203.67.179:8888/LexiconMetadataUpdateWebService/MetadataUpdateService.svc?wsdl=wsdl0" uri="wsdl/173.203.67.179_8888/LexiconMetadataUpdateWebService/MetadataUpdateService.svc.wsdl_wsdl0.wsdl"/>
+    <system systemId="http://localhost:33996/ShakerService.svc?wsdl" uri="wsdl/localhost_33996/ShakerService.svc.wsdl"/>
+    <system systemId="http://localhost:33996/ShakerService.svc?xsd=xsd0" uri="wsdl/localhost_33996/ShakerService.svc.xsd_xsd0.xsd"/>
+    <system systemId="http://localhost:33996/ShakerService.svc?xsd=xsd5" uri="wsdl/localhost_33996/ShakerService.svc.xsd_xsd5.xsd"/>
+    <system systemId="http://localhost:33996/ShakerService.svc?xsd=xsd2" uri="wsdl/localhost_33996/ShakerService.svc.xsd_xsd2.xsd"/>
+    <system systemId="http://localhost:33996/ShakerService.svc?xsd=xsd1" uri="wsdl/localhost_33996/ShakerService.svc.xsd_xsd1.xsd"/>
+    <system systemId="http://localhost:33996/ShakerService.svc?xsd=xsd3" uri="wsdl/localhost_33996/ShakerService.svc.xsd_xsd3.xsd"/>
+    <system systemId="http://localhost:33996/ShakerService.svc?xsd=xsd4" uri="wsdl/localhost_33996/ShakerService.svc.xsd_xsd4.xsd"/>
+    <system systemId="http://localhost:33996/ShakerService.svc?wsdl=wsdl0" uri="wsdl/localhost_33996/ShakerService.svc.wsdl_wsdl0.wsdl"/>
+</catalog>

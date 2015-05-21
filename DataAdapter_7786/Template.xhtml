@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:f="http://java.sun.com/jsf/core"      >
+   
+   
+   <!-- HEAD --><h:head>
+        <title>VLDS DataAdapter</title>
+        <link rel="stylesheet" type="text/css" href="./css/UI.css" />  
+        
+   <!-- +++++++++++++++++ Javascript for fidgetWidget ++++++++++++++++++++++ -->                                   
+   <script type="text/javascript">  
+    function start() {  
+        
+        window['progress'] = setInterval(function() {  
+            var oldValue = pbClient.getValue(),  
+            newValue = oldValue + 10;  
+  
+            pbClient.setValue(pbClient.getValue() + 10);  
+            if(newValue > 100) {  
+                newValue= 0; pbClient.setValue(0); 
+            }  
+        }, 1000);  
+    }  
+  
+    function cancel() {  
+        clearInterval(window['progress']);  
+        pbClient.setValue(0);   
+    }  
+</script>       
+        
+        
+        
+    </h:head>
+   <!-- BODY --><h:body>
+     
+   <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+   <!--                                MAIN                                  -->
+   <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <p:layout id="mainLayout" fullPage="true" >  
+          
+       <!-- MENU --><p:layoutUnit position="west" header="MENU" collapsible="true" >  
+       <h:form >  
+       <p:separator/>
+           <p:commandButton  action="setup?faces-redirect=true"  styleClass="#{(user.display eq 'setup'  ? 'selected-active' : 'mnuBtn' )}"  value="Setup"  type="submit" ajax="false" >       <f:setPropertyActionListener target="#{user.display}" value="setup" />  </p:commandButton><br/>
+           <p:commandButton  action="home?faces-redirect=true"   styleClass="#{(user.display eq 'home'   ? 'selected-active' : 'mnuBtn' )}"  value="Home"  type="submit" ajax="false" >        <f:setPropertyActionListener target="#{user.display}" value="home" />   </p:commandButton><br/>
+           <p:commandButton  action="wsstat?faces-redirect=true" styleClass="#{(user.display eq 'wsstat' ? 'selected-active' : 'mnuBtn' )}"  value="Statistics"   type="submit" ajax="false" > <f:setPropertyActionListener target="#{user.display}" value="wsstat" /> </p:commandButton><br/>
+           <p:commandButton  action="logs?faces-redirect=true"   styleClass="#{(user.display eq 'logs'   ? 'selected-active' : 'mnuBtn' )}"  value="Logs"         type="submit" ajax="false" > <f:setPropertyActionListener target="#{user.display}" value="logs" />   </p:commandButton><br/>
+           <p:separator/>
+       <p:spacer width="15" />
+       <p:commandLink value="logout" action="#{user.LogoutAction}" ajax="false"/>
+       </h:form>  
+       </p:layoutUnit>  
+       <!-- MAIN --><p:layoutUnit position="center">       
+       <div id="content">
+       <h:form>        
+           <ui:insert name="content" /> 
+       </h:form>
+       </div>
+       </p:layoutUnit>    
+       <!-- Info Bar --><p:layoutUnit id="InfoBar" header="#{user.infoBar}" position="south" collapsible="true"  >  
+           
+           <!-- Warning panel, warns of undeployable versions                -->
+           <p:panel rendered="#{user.displayDemoBar}" styleClass="hokie-panel" >
+           <div align="center">
+               <br/><br/>
+               <h:outputText style="color: #800000;" value="#{user.demoBarText}" />
+           </div>
+           </p:panel>
+       </p:layoutUnit>
+       
+      
+    </p:layout>  
+    
+   <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+   <!--                            FIDGET WIDGET                             -->
+   <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+   <p:dialog id="id_fidget" header="Testing ..." widgetVar="widgetFidget" modal="true" closable="false" resizable="false" onShow="start()" onHide="cancel()" > 
+    <h:form>   
+       <!-- <script type="text/javascript">start()</script> -->
+       <p:progressBar id="progressBarClient" widgetVar="pbClient" style="width:300px"  />    
+    </h:form>
+   </p:dialog>   
+                       
+   
+    <p:growl sticky="true" showDetail="true" autoUpdate="true" />  
+    </h:body>  
+   
+</html>
+

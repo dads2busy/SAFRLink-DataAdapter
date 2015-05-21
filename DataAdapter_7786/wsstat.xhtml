@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:f="http://java.sun.com/jsf/core"     >
+    <h:head><title>IGNORED</title></h:head>
+       
+   <h:body>
+   <ui:composition template="/Template.xhtml" >
+   <ui:define name="content" >
+   <p:panel header="Web Service Statistics" > 
+   
+      <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+      <!--                  Most Recent Message Statistics                   -->         
+      <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->                
+      <p:dataTable id="recentTable" var="Stats" value="#{user.statistics.stats}" rowStyleClass="#{user.toggle eq 'true' ? 'rc1' : null}" >  
+         <f:facet name="header" >Most Recent Message Statistics</f:facet>
+         <!-- Message ID --><p:column>
+                    <f:facet name="header">Web Service Message</f:facet>
+                    <h:outputText value="#{Stats.name}" />
+                </p:column>
+         <!-- Direction  --><p:column style="text-align: center">
+                    <f:facet name="header">Direction</f:facet>
+                    <h:outputText value="#{Stats.recentDir}" />                    
+                </p:column>
+         <!-- Date/Time  --><p:column style="text-align: center">
+                    <f:facet name="header">Most Recent</f:facet>
+                    <h:outputText value="#{Stats.recentTime}" /> 
+                </p:column>
+         <!-- Duration   --><p:column style="text-align: center" >
+                    <f:facet name="header">Duration(sec.)</f:facet>
+                    <h:outputText value="#{Stats.recentDuration}" /> 
+                </p:column>
+         <f:facet name="footer" >  <p:commandButton widgetVar="recentButton" id="recent_button" value="refresh" actionListener="#{user.statistics.Refresh}"  update="recentTable,recent_button" onclick="recentButton.disable()"/> </f:facet>
+      </p:dataTable>            
+      <br/><br/>
+      
+      <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+      <!--                    Message Average Statistics                     -->         
+      <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->       
+      <p:dataTable id="avrgTable" var="Stats" value="#{user.statistics.stats}" rowStyleClass="#{user.toggle eq 'true' ? 'rc1' : null}" >
+         <f:facet name="header" >Average Message Statistics </f:facet>
+         <!-- Message ID --><p:column>
+                    <f:facet name="header">Web Service Message</f:facet>
+                    <h:outputText value="#{Stats.name}" />
+                </p:column>
+         <!-- 0-24 hrs   --><p:column style="text-align: center" >
+                    <f:facet name="header">Last 24 hours</f:facet>
+                    <h:outputText value="#{Stats.avrg1}" />                    
+                </p:column>
+         <!-- 0-7 Days   --><p:column style="text-align: center" >
+                    <f:facet name="header">Last 7 Days</f:facet>
+                    <h:outputText value="#{Stats.avrg7}" /> 
+                </p:column>
+         <!-- 0-30 Days  --><p:column style="text-align: center" >
+                    <f:facet name="header">Last 30 Days</f:facet>
+                    <h:outputText value="#{Stats.avrg30}" /> 
+                </p:column>
+         <!-- 0-90 Days  --><p:column style="text-align: center" >
+                    <f:facet name="header">Last 90 Days</f:facet>
+                    <h:outputText value="#{Stats.avrg90}" /> 
+                </p:column> 
+         <f:facet name="footer" >  <p:commandButton widgetVar="avrgButton"  id="avrg_button" value="refresh" actionListener="#{user.statistics.Refresh}" update="avrgTable,avrg_button" onclick="avrgButton.disable()"/> </f:facet>
+      </p:dataTable>  
+      <br/><br/>
+ 
+   </p:panel>    
+   </ui:define>
+   </ui:composition>   
+   </h:body>
+    
+</html>
+

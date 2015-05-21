@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"     >
+    
+    <h:head>
+        <title>VLDS DataAdapter</title>
+        <link rel="stylesheet" type="text/css" href="./css/UI.css" />
+    </h:head>
+    
+    
+    <h:body styleClass="h1"  >
+    <div align="center" >
+        
+    <h:form>
+           <br/><br/><br/><br/>
+           
+           <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+           <!--                     Login Panel                              -->
+           <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->           
+           <p:panel id="psswdPanel" header="VLDS Data Adapter Login" style="max-width: 600px;" > 
+           <h:panelGrid columns="5" cellpadding="5"  >   
+              
+              <p:spacer width="15" height="20"/><p:spacer width="10" /><p:spacer width="10" /><p:spacer width="10" /><p:spacer width="15" />
+              
+              <p:spacer width="15" />
+              <h:outputLabel for="psswd_in" value="Password: " />
+              <p:password id="psswd_in" minLength="4" value="#{user.password}" feedback="false" ajax="false"/> 
+              <!-- MOVED To Shirro INI for now -->
+     
+              <!-- <p:commandLink id="testYY" styleClass="tiny" value="{user.passChangeTxt}" actionListener="{user.TogglePassChange}" update="psswdPanel" /> -->
+
+              <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+              <p:spacer width="15" />             
+              
+              <p:spacer width="15" rendered="#{user.changingPass}" />
+              <h:outputLabel for="id_new_password_1" value="New Password: "  rendered="#{user.changingPass}"/>
+              <p:password    id= "id_new_password_1" minLength="4" value="#{user.newPassword1}" feedback="false" rendered="#{user.changingPass}" /> 
+              <p:spacer width="10" rendered="#{user.changingPass}" />              
+              <p:spacer width="15" rendered="#{user.changingPass}" />
+              
+              <p:spacer width="15" rendered="#{user.changingPass}" />
+              <h:outputLabel for="id_new_password_2" value="Retype Password: " rendered="#{user.changingPass}" />
+              <p:password    id= "id_new_password_2" minLength="4" value="#{user.newPassword2}" feedback="false" rendered="#{user.changingPass}" />  
+              <p:spacer width="10" rendered="#{user.changingPass}" />              
+              <p:spacer width="15" rendered="#{user.changingPass}" />              
+                 
+              <p:spacer width="15" height="20"/><p:spacer width="10" />
+              <p:commandButton  value="#{user.loginBttnTxt}"  action="#{user.LoginAction}" type="submit" ajax="false"/>
+              <p:spacer width="10" /><p:spacer width="15" />
+                 
+           </h:panelGrid>   
+           </p:panel>  
+                   
+           <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+           <!--                Change Password Dialog                        -->
+           <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+           <p:dialog id="id_change_password" header="Change Password" widgetVar="dlgChangePassword" modal="true" style="min-width: 500px;" > 
+           <h:panelGrid columns="2" cellpadding="5" > 
+              
+              <h:outputLabel for="old_psswd" value="Old Password: " />
+              <p:password    id="old_psswd" minLength="4" value="#{user.password}" feedback="false" /> 
+              
+              <p:spacer height="7" width="10" />
+              <p:spacer height="7" width="10" />
+                      
+              
+              <p:spacer width="15" />
+              <p:commandButton value="Change It" actionListener="#{user.ChangePassword}" update="id_change_password" />
+              
+           </h:panelGrid> 
+           </p:dialog>             
+           
+    </h:form>
+        
+    <p:growl id="login_growl" sticky="true" showDetail="true" />  
+        
+    </div>      
+    </h:body>
+</html>

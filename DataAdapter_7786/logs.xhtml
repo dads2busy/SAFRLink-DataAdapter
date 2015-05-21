@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:f="http://java.sun.com/jsf/core"     >
+    <h:head><title>IGNORED</title></h:head>
+       
+    <h:body>
+    <ui:composition template="/Template.xhtml" >
+    <ui:define name="content" >       
+    <p:panel id="pnlOption" header="Web Service Logs"  >                     
+    
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!--                    Filter Criteria Panel                            -->
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <p:panel header="Filter Criteria" toggleable="true" style="margin: 1" toggleSpeed="500"  widgetVar="filterPanel" collapsed="#{user.logs.isCollapsed}">
+       <p:ajax event="toggle" listener="#{user.logs.handleToggle}" update="pnlLogs" />
+       
+       <h:panelGrid columns="6" cellpadding="10px"  >
+              <h:outputText styleClass="td1"  value="Start Date:" />             
+              <p:calendar showButtonPanel="true" value="#{user.logs.startDate}" />
+              <h:outputText styleClass="td1"  value="End Date:" /> 
+              <p:calendar showButtonPanel="true" value="#{user.logs.endDate}"/>
+              <p:spacer width="30px" /><p:spacer width="30px" />
+               
+              <h:outputText styleClass="td1"  value="Thread:" />               
+              <p:selectOneMenu value="#{user.logs.filterThread}"> 
+                 <f:selectItems value="#{user.logs.filterThreads}" />                        
+              </p:selectOneMenu>
+              <h:outputText styleClass="td1"  value="Category:" />               
+              <p:selectOneMenu value="#{user.logs.filterCategory}"> 
+                 <f:selectItems value="#{user.logs.filterCategories}" />                        
+              </p:selectOneMenu>
+              <h:outputText styleClass="td1"  value="Level:" /> 
+              <p:selectOneMenu value="#{user.logs.filterLevel}" style="min-width: 50px;"> 
+                 <f:selectItems value="#{user.logs.filterLevels}" />                        
+              </p:selectOneMenu>
+              
+              <h:outputText styleClass="td1"  value="Message Contains:" /> 
+              <p:inputText />
+              <p:spacer width="30px" /><p:spacer width="30px" /><p:spacer width="30px" /><p:spacer width="30px" />
+              
+              <p:commandButton value="Apply Filter" actionListener="#{user.logs.ApplyFilters}" update="pnlLogs"/>
+              <p:commandButton value="Clear Filter" actionListener="#{user.logs.ClearFilter}"  update="pnlOption,pnlLogs"/>             
+           </h:panelGrid>
+    </p:panel>
+        
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!--                          Log List                                   -->
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <p:panel header="Log List" id="pnlLogs"  toggleable="true" toggleSpeed="500"  widgetVar="LogPanel" >  
+       <p:dataTable var="sLogs" value="#{user.logs.displayedLogs}"
+                         rowStyleClass="ui-datatable-background-color:blue; background-image:none;"
+                         paginator="true" rows="#{user.logs.rows}" >
+          <!-- Date     --><p:column>
+                    <f:facet name="header">Date</f:facet>
+                    <h:outputText value="#{sLogs.date}" />
+                </p:column>
+          <!-- Level    --><p:column>
+                    <f:facet name="header">Level</f:facet>
+                    <h:outputText value="#{sLogs.level}" />                    
+                </p:column>
+          <!-- Thread   --><p:column>
+                    <f:facet name="header">Thread</f:facet>
+                    <h:outputText value="#{sLogs.thread}" /> 
+                </p:column>
+          <!-- Category --><p:column>
+                    <f:facet name="header">Category</f:facet>
+                    <h:outputText value="#{sLogs.category}" /> 
+                </p:column>
+          <!-- Log Name --><p:column>
+                    <f:facet name="header">Log Name</f:facet>
+                    <p:commandLink value="#{sLogs.name}" onclick="dlgViewLog.show()" type="commandlink" />
+                    
+                </p:column>                     
+       </p:dataTable>   
+    </p:panel> 
+    
+    </p:panel>       
+       
+    <!-- ++++++++++++++++++++ Dialog for Log Display +++++++++++++++++++++++ -->
+    <p:dialog id="LogViewer" header="Log Viewer" modal="false" widgetVar="dlgViewLog" height="500" width="1000"  >   
+       <h:outputText value="Log Text is shown here" />  
+    </p:dialog>  
+                        
+    </ui:define>
+    </ui:composition>       
+    </h:body>
+    
+</html>
+

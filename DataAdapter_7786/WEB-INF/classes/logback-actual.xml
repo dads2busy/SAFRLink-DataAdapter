@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- This is the actual file that controls the DataAdapter's LogBack logging.  
+     See edu.vt.ipg.dataadapter.App.loggingSetup(). 
+  -->
+<configuration>
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <!-- encoders are assigned the type
+         ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} [%thread] [%X{RequestId}] %-5level %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <!--Daily rolling file appender -->
+  <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${edu.vt.ipg.dataadapter.logfile}.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>${edu.vt.ipg.dataadapter.logfile}.%d{yyyy-MM-dd}.log</fileNamePattern>
+    </rollingPolicy>
+
+    <layout class="ch.qos.logback.classic.PatternLayout">
+      <pattern>%d{HH:mm:ss.SSS} [%thread] [%X{RequestId}] %-5level %logger{36} - %msg%n</pattern>
+    </layout>
+  </appender>
+
+  <appender name="h2Appender" class="ch.qos.logback.classic.db.DBAppender">
+    <connectionSource class="ch.qos.logback.core.db.DataSourceConnectionSource">
+      <dataSource class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <driverClass>org.h2.Driver</driverClass>
+        <!-- NOTES:
+             1) IF you enable h2 database tracing then you will see an SL4J error in the logs as follows:
+SLF4J: The following loggers will not work because they were created
+SLF4J: during the default configuration phase of the underlying logging system.
+SLF4J: See also http://www.slf4j.org/codes.html#substituteLogger
+SLF4J: h2database
+                UNLESS you rename logback.xml to a filename that won't get auto-loaded (ie logback-actual.xml) and 
+                then use code in App.java to configure via loggingSetup method.
+             2) If you want to show H2 logs you can add ;TRACE_LEVEL_FILE={n} to the URL or you can configure Logger "h2database".
+                If you do both, the "h2database" logger settings take precedence.
+        -->
+        <jdbcUrl>jdbc:h2:database\embedded_db\DataAdapterEmbeddedDB</jdbcUrl>
+        <user>sa</user>
+        <password></password>
+      </dataSource>
+    </connectionSource>
+  </appender>
+
+  <logger name="edu.vt" level="INFO">
+    <appender-ref ref="h2Appender" />
+  </logger>
+  <logger name="h2database" level="WARN"/>
+  <logger name="org.springframework.jdbc" level="WARN"/>
+  <logger name="edu.vt" level="INFO"/>
+  <logger name="edu.vt.ipg.dataadapter.jdbc.SpringQueryRunner" level="WARN"/>
+
+  <!-- log4jdbc setting -->
+  <logger name="jdbc.audit" level="OFF"/>
+  <logger name="jdbc.connection" level="OFF"/>
+  <logger name="jdbc.resultset" level="OFF"/>
+  <logger name="jdbc.resultsettable" level="OFF"/>
+  <logger name="jdbc.sqlonly" level="OFF"/>
+  <logger name="jdbc.sqltiming" level="OFF"/>
+
+  <root level="INFO">
+    <appender-ref ref="FILE" />
+  </root>
+</configuration>

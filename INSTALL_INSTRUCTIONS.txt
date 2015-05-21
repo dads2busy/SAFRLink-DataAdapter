@@ -1,0 +1,41 @@
+INSTALL REQUIRES THE FOLLOWING BE INSTALLED ON YOUR MACHINE:
+        - JRE 7.
+
+
+INSTALL PROCEDURE:
+
+MSSQL DATABASE:
+   - Open SSMS and connect to the exposure database.
+   - Load the V2_UpdateScript.sql to upgrade from a V1 or the V2_FULL.sql script for a new install 
+      - This will be in the agency's subfolder. 
+      - Command is: File | Open | File ...     
+   - Turn SQLCMD mode ON: Query | SQLCMD Mode
+   - Execute button.                                       
+                                             
+ORACLE DATABASE:
+   - Edit script by replacing the <<TableSpaceName>> tag with the databases actual Table space name.
+
+
+
+- Run the batch file 'WinInstall.bat'
+- Run the batch file 'startup.bat'
+
+
+CHECKING THE VERSION
+To verify which version of DataAdapter you're running: 
+  - Logon to the DataAdapter web interface: https://localhost:8090/VLDS/ 
+  - Select the Home tab on the left.  Find the DataAdapter Version ID: line, If it is a developer's custom build, the build number will be followed by this warning:  (This is an un-official developer's version) 
+
+CHANGING THE ROOT PASSWORD:  To change the root password you must copy the hashed/encrypted password into the shiro.ini file.
+        - create the encrypted password by opening a Windows command prompt and changing to the root installed directory.
+        - run this command: java -jar shiro-tools-hasher-1.2.1-cli.jar -p 
+           - I had to click on properties in Windows and spefically allow it to be run.
+        - NOTE: Version number for above may change, check the current name.
+        - enter the password you'd like to encrypt. (will ask you twice.)
+        - copy the resultant string into the shiro.ini file after "Root =" in the [user] section.
+
+        for example the string returned from the above program would be: 
+          $shiro1$SHA-256$500000$iTVt1MU5TGEyF8bQandbgw==$8PJy2PeHP1iKaaX4ELInUdeoqN+GVJKYUFWDiCF46R4=
+
+        Then the line in the shiro.ini file would be:
+          Root = $shiro1$SHA-256$500000$iTVt1MU5TGEyF8bQandbgw==$8PJy2PeHP1iKaaX4ELInUdeoqN+GVJKYUFWDiCF46R4=,Admin

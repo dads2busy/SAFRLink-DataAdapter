@@ -1,0 +1,160 @@
+/* 
+    Document   : UI
+    Created on : Jan 11, 2012, 10:21:00 AM
+    Author     : jhhoward
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+
+
+/* Header for pages  */
+.h1 {
+    display:     block;
+    font-weight: 100;
+    font-size:   large;
+    text-align:  center; 
+}
+/* Tiny for command links */
+.tiny{
+   display: inline-block;
+   font-size:  x-small; 
+}
+
+
+.t1{
+    display:         inline-table;
+    border-collapse: collapse; 
+    border-color:    black; 
+    border-width:    medium; 
+    border-style:    solid;
+}
+
+.mnuBtn{
+    width: 170px;
+}
+
+.rc1{
+    background: #d4d4d4;
+    background-color: #d4d4d4;
+}
+
+.rc2{
+   background: darkgray;
+   background-color: darkgray; 
+}
+
+.td1{
+    width:  350px;
+    height: 50px;
+}
+
+.td2{
+    width:  350px;
+    height: 50px;
+    font-weight: 600;
+}
+
+.e1{
+    display: block;
+    text-align: center;
+    color: red;   
+}
+
+.g1{
+    display: block;
+    text-align: center;
+    color: green;
+}
+
+.trc1{
+  ui-datatable-background-color:blue;
+  background-image:none;  
+}
+
+.trc2{
+  ui-datatable-background-color:green;
+  background-color: green ! important;
+  background-image:none;  
+}
+
+.at1{
+    font-style: italic; 
+    font-weight: bold;
+}
+
+/* RowStyle for a row currently being edited */
+.editing{
+    background: lightgray;
+}
+
+.selected-active{
+   background:  #d4d4d4     !important;
+   font-weight: bolder      !important;
+   font-style:  italic;
+   border-color:#999999 ;  
+   width:       170px;
+   color:       black       !important;
+   border-color: #999999    !important;
+   border-width: 2px        !important;
+   border-bottom-width: 3px !important;   
+}
+
+.hokie-panel{
+   min-height:   7em        !important;
+   background:   #ff9900    !important;
+   font-size:    larger     !important;
+   font-weight:  900        !important;
+   font-style:   italic;
+   color:        #800000    !important;
+   border-color: #800000    !important;
+   border-width: 2px        !important;
+   border-bottom-width: 3px !important;   
+}
+
+body { background-color: #fdf5e6 }
+a:hover { color: red }
+
+th.title   { background-color: #ef8429;
+             font-size: 28px;
+             font-family: Arial, Helvetica, sans-serif;
+}
+th { background-color: #ef8429;
+     font-size: 18px;
+     font-family: Arial, Helvetica, sans-serif;
+}
+td { font-size: 18px;
+     font-family: Arial, Helvetica, sans-serif;
+}
+legend {
+  font-weight: bold;
+  color: black;
+  background-color: #eeeeee;
+  border: 1px solid #999999;
+  padding: 3px 2px;
+}
+.ajaxResult { color: #440000;
+              font-weight: bold;
+              font-size: 18px;
+              font-family: Arial, Helvetica, sans-serif;
+}
+h2 { color: #440000;
+	  font-weight: bold;
+	  font-size: 18px;
+	  font-family: Arial, Helvetica, sans-serif;
+}
+.error { background-color: yellow;
+	      color: red;
+	      font-weight: bold;
+	      font-size: 20px;
+	      font-family: Arial, Helvetica, sans-serif;
+	      border-style: inset;
+}

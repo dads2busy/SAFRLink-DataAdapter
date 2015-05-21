@@ -1,0 +1,10 @@
+Exposure Database Actions prior to Data Adapter Deployment: VEC
+
+1. To create the DataAdapter role, run the file "MSSQLDataAdapterRoleTablesVEC.sql"
+
+2. To create required indexes, run the file "IndexesVEC.sql"
+
+
+Data Adapter Deployment Instructions: VEC
+
+<<Infrastructure Team, insert customized instructions here>>

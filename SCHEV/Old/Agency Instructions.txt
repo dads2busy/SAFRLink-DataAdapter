@@ -1,0 +1,10 @@
+Exposure Database Actions prior to Data Adapter Deployment: SCHEV
+
+1. To create the DataAdapter role, run the file "MSSQLDataAdapterRoleTablesSCHEV.sql"
+
+2. To create required indexes, run the file "IndexesSCHEV.sql"
+
+
+Data Adapter Deployment Instructions: SCHEV
+
+<<Infrastructure Team, insert customized instructions here>>

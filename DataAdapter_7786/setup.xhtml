@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:f="http://java.sun.com/jsf/core"     >
+    
+    <h:head><title>IGNORED</title></h:head>    
+    
+    <h:body id="admin_body" >
+        <ui:composition template="/Template.xhtml" >
+        <ui:define name="content" >         
+        <!--                        KLUDGE ALERT                                 -->
+        <!-- Dummy button for focus to default to, so that keystrokes are caught -->
+        <p:commandButton value="" ajax="false" style="width: 1px; height: 1px" widgetVar="kludge"  />
+        <!-- ++++++++++++++++++++++ MAIN PANEL +++++++++++++++++++++++++++++ -->       
+        <p:panel id="dbPanel" header="VLDS Data Adapter Settings Page"  styleClass=".ui-paneltitlebar.ui-widget-header" > 
+            <p:accordionPanel activeIndex="-1" > 
+               <p:ajax /> <!--  NEEDED DO NOT REMOVE  -->
+               
+               <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+               <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+               <!-- +++++++++++++++++++ Exposure Db +++++++++++++++++++++++++ -->
+               <p:tab title="EXPOSURE DATABASE CONNECTION" titleStyleClass="at1" >    
+               <p:separator style="height:2px" />  
+               <h:panelGrid columns="3" styleClass="t1" cellpadding="10px" rowClasses="null,rc1,null,rc1,null,rc1,null,rc2"  >  
+  
+                  <h:outputText styleClass="td1"  value="Exposure database type: " />
+                  <p:spacer width="95"  height="10"/> 
+                  <p:selectOneMenu  value="#{user.pageSetup.exposureDbType}" style="width: 250px;" > 
+                     <f:selectItems value="#{user.pageSetup.databaseTypes}" />                        
+                  </p:selectOneMenu>
+                 
+                  <h:outputText styleClass="td1"  value="Exposure database host: " />
+                  <p:spacer width="95"  height="10"/>
+                  <p:inputText value="#{user.pageSetup.exposureDbHost}" title="Enter the exposure database's host URL."/>
+                              
+                  <h:outputText styleClass="td1"  value="Exposure database port: " />
+                  <p:spacer width="95"  height="10"/>
+                  <p:inputText value="#{user.pageSetup.exposureDbPort}" title="Enter the port with which to connect to the exposure database."/>
+                  
+                  <h:outputText styleClass="td1"  value="Exposure database name: " />
+                  <p:spacer width="95"  height="10"/>
+                  <p:inputText value="#{user.pageSetup.exposureDbName}" title="Select the name of the exposure database."/>          
+                  
+                  <h:outputText styleClass="td1"  value="Exposure database username: " />
+                  <p:spacer width="95"  height="10"/>
+                  <p:inputText value="#{user.pageSetup.exposureDbUser}" title="Enter the username you wish to connect to the exposure database with."/>
+                  
+                  <h:outputText styleClass="td1"  value="Exposure database password: " />
+                  <p:spacer   width="95"  height="10"/>
+                  <p:password value="#{user.pageSetup.exposureDbPass}" title="Enter the password of the username you wish to connect to the exposure database with."/>          
+                  
+                  <h:outputText styleClass="td1"  value="Exposure database schema: " />
+                  <p:spacer width="95"  height="10"/>
+                  <p:inputText  value="#{user.pageSetup.exposureDbSchema}" title="Enter the exposure database schema to connect to."/>                  
+                                  
+                  <h:outputText styleClass="td2"   value="Exposure-DB Connection:"  />
+                  <p:spacer width="95"  height="20"/>
+                  <p:commandButton widgetVar="exposer_install" id="bttn_exposer_install" value="Setup" actionListener="#{user.pageSetup.Setup}" onclick="exposer_install.disable(),widgetFidget.show()" update="bttn_exposer_install" style="width: 210px;" oncomplete="widgetFidget.hide()"/> 
+                          
+               </h:panelGrid>
+                                  
+               <p:separator style="height:2px" />      
+               </p:tab>
+               <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+               
+               <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+               <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+               <!-- +++++++++++++++++++++ Shaker +++++++++++++++++++++++++++ -->
+               <p:tab id="dataadapter_tab" title="SHAKER" titleStyleClass="at1"  >            
+               <p:separator style="height:2px" />    
+               <h:panelGrid columns="3" styleClass="t1" cellpadding="10px" rowClasses="null,rc2"  >  
+
+                  <h:outputText styleClass="td1"  value="Shaker Service URL: " />
+                  <p:spacer width="25"  height="10"/>
+                  <p:inputText value="#{user.pageSetup.shakerURL}" title="?????." style="width: 30em;"/>
+                                     
+                  <p:spacer width="25"  height="20"/>
+                  <p:spacer width="25"  height="20"/>
+                  <p:commandButton widgetVar="shaker_install" id="bttn_shaker_install" value="Change" actionListener="#{user.pageSetup.ChangeShakerUrl}" onclick="shaker_install.disable()" update="bttn_shaker_install" style="width: 210px;" />
+                               
+               </h:panelGrid>                       
+               <p:separator style="height:2px" />     
+               </p:tab>
+               <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->                                  
+             
+               <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+               <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+               <!-- +++++++++++++++++++++++ Logs +++++++++++++++++++++++++++ -->
+               <p:tab id="security_tab" title="LOGS" titleStyleClass="at1" >            
+                  <p:separator style="height:2px" />     
+                  <p:separator style="height:2px" />                                       
+               </p:tab>
+               <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->               
+               
+                 
+               <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+               <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+               <!-- +++++++++++++++++++++++ DEMO/TEST ++++++++++++++++++++++ -->
+               <p:tab title="DEMO/TEST" titleStyleClass="at1" rendered="#{user.isDemo}" > 
+                  <p:separator style="height:2px" />    
+                  <!-- panelGrid --><h:panelGrid columns="3">  
+                     <p:commandButton value="Generate Test Error"   ajax="false" update="admin_growl" actionListener="#{user.GenerateTestError}" /> 
+                     <p:commandButton value="Generate Test Warning" ajax="false" update="admin_growl" actionListener="#{user.GenerateTestWarn}"  /> 
+                     <p:commandButton value="Generate Test Info"    ajax="false" update="admin_growl" actionListener="#{user.GenerateTestInfo}"  /> 
+                  </h:panelGrid>  
+                  <p:separator style="height:2px" />    
+               </p:tab>
+               <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->               
+               
+          </p:accordionPanel>      
+        </p:panel>          
+        <p:growl id="admin_growl" sticky="true" showDetail="true" />          
+    
+        </ui:define>
+        </ui:composition>        
+    </h:body>
+</html>
+
+
+
+

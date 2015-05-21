@@ -1,0 +1,9 @@
+Exposure Database Actions prior to Data Adapter Deployment: DOE
+
+1. Run the script DataAdapterGrantsProd.sql. This script will create user DATAADAPTER and grant select permissions on VLDS tables. Add TABLESPACE name and Password details in the script.
+
+2. After successful completion of DataAdapterGrantsProd.sql, log in with DATAADAPTER credentials to run script VLDSTblDDLProd.sql. This will create tables and indexes for VLDS_ID_MAPPER and VLDS_PERFORMANCE_JOIN tables. Add TABLESPACE name in the script
+
+Data Adapter Deployment Instructions: DOE
+
+<<Infrastructure Team, insert customized instructions here>>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee        http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+    <!-- The bare minimum needed for JSF 2.0 is a servlet 2.5
+      declaration and the mapping for the FacesServlet.
+      Setting PROJECT_STAGE to Development is highly recommended
+      during initial development so that you get more helpful
+      error messages.
+      
+      From JSF 2.0 tutorial at http://www.coreservlets.com/JSF-Tutorial/jsf2/
+  -->
+  
+    <listener>
+       <listener-class>org.apache.shiro.web.env.EnvironmentLoaderListener</listener-class>
+    </listener> 
+    <filter>
+       <filter-name>ShiroFilter</filter-name>
+       <filter-class>org.apache.shiro.web.servlet.ShiroFilter</filter-class>
+    </filter>
+    <filter-mapping>
+       <filter-name>ShiroFilter</filter-name>
+       <url-pattern>/*</url-pattern>
+       <dispatcher>REQUEST</dispatcher> 
+       <dispatcher>FORWARD</dispatcher> 
+       <dispatcher>INCLUDE</dispatcher> 
+       <dispatcher>ERROR</dispatcher>
+    </filter-mapping>    
+  
+    <context-param> 
+        <param-name>primefaces.THEME</param-name> 
+        <param-value>black-tie</param-value> 
+    </context-param> 
+    <session-config>
+        <session-timeout>
+            180
+        </session-timeout>
+    </session-config>    
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.jsf</url-pattern>
+    </servlet-mapping>
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Development</param-value>
+    </context-param>
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+    <listener>
+        <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
+    </listener>
+
+<!--
+Automatically created by JspC.
+Place this fragment in the web.xml before all icon, display-name,
+description, distributable, and context-param elements.
+-->
+
+    <servlet>
+        <servlet-name>jsp.index_jsp</servlet-name>
+        <servlet-class>jsp.index_jsp</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>jsp.index_jsp</servlet-name>
+        <url-pattern>/index.jsp</url-pattern>
+    </servlet-mapping>
+
+<!--
+All session-config, mime-mapping, welcome-file-list, error-page, taglib,
+resource-ref, security-constraint, login-config, security-role,
+env-entry, and ejb-ref elements should follow this fragment.
+-->
+</web-app>
